@@ -101,31 +101,31 @@
 
     <!-- medium (dom + 1 sec) -->
     <script data-src="https://static.tildacdn.com/js/tilda-popup-1.0.min.js" charset="utf-8" async
-        onerror="this.loaderr='y';"></script>
+        onerror="this.loaderr='y';" data-type="mid"></script>
     <script data-src="https://static.tildacdn.com/js/tilda-events-1.0.min.js" charset="utf-8" async
-        onerror="this.loaderr='y';"></script>
+        onerror="this.loaderr='y';" data-type="mid"></script>
     <link rel="stylesheet" data-href="https://static.tildacdn.com/css/tilda-popup-1.1.min.css" type="text/css"
-        media="print" onload="this.media='all';" onerror="this.loaderr='y';" />
+        media="print" onload="this.media='all';" onerror="this.loaderr='y';" data-type="mid" />
     <noscript>
         <link rel="stylesheet" data-href="https://static.tildacdn.com/css/tilda-popup-1.1.min.css" type="text/css"
-            media="all" />
+            media="all" data-type="mid" />
     </noscript>
+    <script data-src="https://static.tildacdn.com/js/tilda-zoom-2.0.min.js" charset="utf-8" async
+        onerror="this.loaderr='y';" data-type="mid"></script>
 
     <!-- low (dom + 3 sec) -->
     <script data-src="https://static.tildacdn.com/js/tilda-zero-gallery-1.0.min.js" charset="utf-8" async
-        onerror="this.loaderr='y';"></script>
+        onerror="this.loaderr='y';" data-type="low"></script>
     <link rel="stylesheet" data-href="https://static.tildacdn.com/css/tilda-zero-gallery-1.0.min.css" type="text/css"
-        media="all" onerror="this.loaderr='y';" />
-    <script data-src="https://static.tildacdn.com/js/hammer.min.js" charset="utf-8" async onerror="this.loaderr='y';">
+        media="all" onerror="this.loaderr='y';" data-type="low" />
+    <script data-src="https://static.tildacdn.com/js/hammer.min.js" charset="utf-8" async onerror="this.loaderr='y';" data-type="low">
     </script>
     <script src="https://static.tildacdn.com/js/tilda-forms-1.0.min.js" charset="utf-8" async
-        onerror="this.loaderr='y';"></script>
+        onerror="this.loaderr='y';" data-type="low"></script>
     <link rel="stylesheet" href="https://static.tildacdn.com/css/tilda-forms-1.0.min.css" type="text/css" media="all"
-        onerror="this.loaderr='y';" />
-    <script data-src="https://static.tildacdn.com/js/tilda-zoom-2.0.min.js" charset="utf-8" async
-        onerror="this.loaderr='y';"></script>
+        onerror="this.loaderr='y';" data-type="low" />
     <link rel="stylesheet" data-href="https://static.tildacdn.com/css/tilda-zoom-2.0.min.css" type="text/css"
-        media="print" onload="this.media='all';" onerror="this.loaderr='y';" />
+        media="print" onload="this.media='all';" onerror="this.loaderr='y';" data-type="low" />
     <noscript>
         <link rel="stylesheet" data-href="https://static.tildacdn.com/css/tilda-zoom-2.0.min.css" type="text/css"
             media="all" />
@@ -15002,39 +15002,48 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#D9000000', en
     <!-- apply mid/low scripts -->
     <script>
         t_onReady(function () {
-            var dataSrc = document.head.querySelectorAll('[data-src]');
-            dataSrc.forEach(function (el, i) {
-                var src = el.getAttribute('data-src');
-                if (el.parentNode) {
-                    el.parentNode.removeChild(el);
-                }
+            function loadScriptsAndStyles(type) {
+                var dataSrc = document.head.querySelectorAll('[data-src][data-type=' + type + ']');
+                dataSrc.forEach(function (el, i) {
+                    var src = el.getAttribute('data-src');
+                    if (el.parentNode) {
+                        el.parentNode.removeChild(el);
+                    }
 
-                const script = document.createElement('script');
-                script.src = src;
-                script.async = true;
-                script.charset = 'utf-8';
-                script.onerror = "this.loaderr='y';";
+                    const script = document.createElement('script');
+                    script.src = src;
+                    script.async = true;
+                    script.charset = 'utf-8';
+                    script.onerror = "this.loaderr='y';";
 
-                document.head.appendChild(script);
-            });
+                    document.head.appendChild(script);
+                });
 
-            var dataHref = document.head.querySelectorAll('[data-href]');
-            dataHref.forEach(function (el, i) {
-                var href = el.getAttribute('data-href');
-                if (el.parentNode) {
-                    el.parentNode.removeChild(el);
-                }
+                var dataHref = document.head.querySelectorAll('[data-href][data-type=' + type + ']');
+                dataHref.forEach(function (el, i) {
+                    var href = el.getAttribute('data-href');
+                    if (el.parentNode) {
+                        el.parentNode.removeChild(el);
+                    }
 
-                const link = document.createElement('link');
-                link.href = href;
-                link.rel = 'stylesheet';
-                link.type = 'text/css';
-                link.media = 'all';
-                link.onerror = "this.loaderr='y';";
+                    const link = document.createElement('link');
+                    link.href = href;
+                    link.rel = 'stylesheet';
+                    link.type = 'text/css';
+                    link.media = 'all';
+                    link.onerror = "this.loaderr='y';";
 
-                document.head.appendChild(link);
+                    document.head.appendChild(link);
+                });
+            }
 
-            });
+            setTimeout(() => {
+                loadScriptsAndStyles('mid');
+            }, 1000);
+
+            setTimeout(() => {
+                loadScriptsAndStyles('low');
+            }, 2000);
         });
     </script>
 
