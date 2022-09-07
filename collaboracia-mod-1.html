@@ -107,16 +107,17 @@
         // apply medium/low resources (scripts or styles)
         t_onReady(function () {
             function t_loadResources(arr) {
-                arr.forEach(function (el) {
+                arr.forEach(function (u) {
                     var r;
-                    var s = 'https://static.tildacdn.com/';
-                    if (el.indexOf('.css') !== -1) {
+                    var h = u.indexOf('https://') !== -1;
+                    var a = 'https://static.tildacdn.com/';
+                    if (u.indexOf('.css') !== -1) {
                         r = document.createElement('link');
-                        r.href = (el.indexOf('https://') !== -1 ? '' : s + 'css/') + el;
+                        r.href = (h ? '' : a + 'css/') + u;
                         r.rel = 'stylesheet';
-                    } else if (el.indexOf('.js') !== -1) {
+                    } else if (u.indexOf('.js') !== -1) {
                         r = document.createElement('script');
-                        r.src = (el.indexOf('https://') !== -1 ? '' : s + 'js/') + el;
+                        r.src = (h ? '' : a + 'js/') + u;
                         r.charset = 'utf-8';
                     }
                     r.onerror = "this.loaderr='y';";
@@ -125,11 +126,11 @@
                 });
             }
 
-            setTimeout(() => {
+            setTimeout(function () {
                 t_loadResources(t_loadResourcesMedium);
             }, 1000);
 
-            setTimeout(() => {
+            setTimeout(function () {
                 t_loadResources(t_loadResourcesLow);
             }, 3000);
         });
