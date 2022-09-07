@@ -70,6 +70,7 @@
             };
         }
     </script>
+    <script src="https://neo.tildacdn.com/js/tilda-fallback-1.0.min.js" charset="utf-8" async></script>
     <script src="https://static.tildacdn.com/js/jquery-1.10.2.min.js" onerror="this.loaderr='y';"></script>
     <script src="https://static.tildacdn.com/js/tilda-scripts-3.0.min.js" onerror="this.loaderr='y';"></script>
 
@@ -140,43 +141,60 @@
         })();
     </script>
 
-    <!-- mid (DOM + 1 sec) -->
-    <script data-type="mid" data-src="https://ws.tildacdn.com/project5390767/tilda-blocks-page29136944.min.js?t=1662392391"
-        onerror="this.loaderr='y';"></script>
-    <script data-type="mid" data-src="https://static.tildacdn.com/js/tilda-events-1.0.min.js" charset="utf-8" async
-        onerror="this.loaderr='y';"></script>
-    <script data-type="mid" data-src="https://static.tildacdn.com/js/tilda-cover-1.0.min.js" charset="utf-8" async
-        onerror="this.loaderr='y';"></script>
-    <script data-type="mid" data-src="https://static.tildacdn.com/js/tilda-slds-1.4.min.js" charset="utf-8" async
-        onerror="this.loaderr='y';"></script>
+    <script>
+        // medium (dom + 1 sec)
+        window.t_loadResourcesMedium = [
+            'tilda-events-1.0.min.js',
+            'tilda-cover-1.0.min.js',
+            'tilda-slds-1.4.min.js',
+            'https://ws.tildacdn.com/project5390767/tilda-blocks-page29136944.min.js?t=1662392391',
+        ];
 
+        // low (dom + 3)
+        window.t_loadResourcesLow = [
+            'https://ws.tildacdn.com/project5390767/custom.css?t=1662392391',
+            'tilda-menu-1.0.min.js',
+            'hammer.min.js',
+            'tilda-zoom-2.0.min.js',
+            'tilda-menusub-1.0.min.js',
+            'tilda-popup-1.1.min.css',
+            'tilda-zoom-2.0.min.css',
+            'tilda-forms-1.0.min.css',
+            'tilda-menusub-1.0.min.css',
+        ];
 
-    <!-- low (DOM + 3 sec) -->
-    <script data-type="low" data-src="https://static.tildacdn.com/js/tilda-menu-1.0.min.js" charset="utf-8" async
-        onerror="this.loaderr='y';"></script>
-    <link rel="stylesheet" type="text/css" data-type="low" data-href="https://ws.tildacdn.com/project5390767/custom.css?t=1662392391">
-    <script data-type="low" data-src="https://static.tildacdn.com/js/hammer.min.js" charset="utf-8" async onerror="this.loaderr='y';">
+        // apply medium/low resources (scripts or styles)
+        t_onReady(function () {
+            function t_loadResources(arr) {
+                arr.forEach(function (u) {
+                    var r;
+                    var h = u.indexOf('https://') !== -1;
+                    var a = 'https://static.tildacdn.com/';
+                    if (u.indexOf('.css') !== -1) {
+                        r = document.createElement('link');
+                        r.href = (h ? '' : a + 'css/') + u;
+                        r.rel = 'stylesheet';
+                    } else if (u.indexOf('.js') !== -1) {
+                        r = document.createElement('script');
+                        r.src = (h ? '' : a + 'js/') + u;
+                        r.charset = 'utf-8';
+                    }
+                    r.onerror = "this.loaderr='y';";
+
+                    document.head.appendChild(r);
+                });
+            }
+
+            setTimeout(function () {
+                t_loadResources(t_loadResourcesMedium);
+            }, 1000);
+
+            setTimeout(function () {
+                t_loadResources(t_loadResourcesLow);
+            }, 3000);
+        });
     </script>
-    <script data-type="low" data-src="https://static.tildacdn.com/js/tilda-zoom-2.0.min.js" charset="utf-8" async
-        onerror="this.loaderr='y';"></script>
-    <script data-type="low" data-src="https://static.tildacdn.com/js/tilda-menusub-1.0.min.js" charset="utf-8" async
-        onerror="this.loaderr='y';"></script>
-    <script data-type="low" data-src="https://neo.tildacdn.com/js/tilda-fallback-1.0.min.js" charset="utf-8" async></script>
 
-    <link rel="stylesheet" data-type="low" data-href="https://static.tildacdn.com/css/tilda-popup-1.1.min.css" type="text/css" media="print"
-        onload="this.media='all';" onerror="this.loaderr='y';" /><noscript>
-        <link rel="stylesheet" data-type="low" data-href="https://static.tildacdn.com/css/tilda-popup-1.1.min.css" type="text/css"
-            media="all" /></noscript>
-    <link rel="stylesheet" data-type="low" data-href="https://static.tildacdn.com/css/tilda-zoom-2.0.min.css" type="text/css" media="print"
-        onload="this.media='all';" onerror="this.loaderr='y';" /><noscript>
-        <link rel="stylesheet" data-type="low" data-href="https://static.tildacdn.com/css/tilda-zoom-2.0.min.css" type="text/css"
-            media="all" /></noscript>
-    <link rel="stylesheet" data-type="low" data-href="https://static.tildacdn.com/css/tilda-forms-1.0.min.css" type="text/css" media="all"
-        onerror="this.loaderr='y';" />
-    <link rel="stylesheet" data-type="low" data-href="https://static.tildacdn.com/css/tilda-menusub-1.0.min.css" type="text/css"
-        media="print" onload="this.media='all';" onerror="this.loaderr='y';" /><noscript>
-        <link rel="stylesheet" data-type="low" data-href="https://static.tildacdn.com/css/tilda-menusub-1.0.min.css" type="text/css"
-            media="all" /></noscript>
 </head>
 
 <body class="t-body" style="margin:0;">
@@ -12398,54 +12416,6 @@
         <!--/footer-->
     </div>
     <!--/allrecords-->
-
-    <!-- apply mid/low scripts -->
-    <script>
-        t_onReady(function () {
-            function loadScriptsAndStyles(type) {
-                var dataSrc = document.head.querySelectorAll('[data-src][data-type=' + type + ']');
-                dataSrc.forEach(function (el, i) {
-                    var src = el.getAttribute('data-src');
-                    if (el.parentNode) {
-                        el.parentNode.removeChild(el);
-                    }
-
-                    const script = document.createElement('script');
-                    script.src = src;
-                    script.async = true;
-                    script.charset = 'utf-8';
-                    script.onerror = "this.loaderr='y';";
-
-                    document.head.appendChild(script);
-                });
-
-                var dataHref = document.head.querySelectorAll('[data-href][data-type=' + type + ']');
-                dataHref.forEach(function (el, i) {
-                    var href = el.getAttribute('data-href');
-                    if (el.parentNode) {
-                        el.parentNode.removeChild(el);
-                    }
-
-                    const link = document.createElement('link');
-                    link.href = href;
-                    link.rel = 'stylesheet';
-                    link.type = 'text/css';
-                    link.media = 'all';
-                    link.onerror = "this.loaderr='y';";
-
-                    document.head.appendChild(link);
-                });
-            }
-
-            setTimeout(() => {
-                loadScriptsAndStyles('mid');
-            }, 1000);
-
-            setTimeout(() => {
-                loadScriptsAndStyles('low');
-            }, 3000);
-        });
-    </script>
 
     <!-- Stat -->
     <script type="text/javascript">
